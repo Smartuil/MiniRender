@@ -40,7 +40,8 @@ struct TGAColor {
 	TGAColor operator *(const double intensity) const {
 		TGAColor res = *this;
 		double clamped = std::max(0., std::min(intensity, 1.));
-		for (int i = 0; i < 4; i++) res.bgra[i] = bgra[i] * clamped;
+		for (int i = 0; i < 4; i++) 
+			res.bgra[i] = bgra[i] * clamped;
 		return res;
 	}
 };
@@ -55,7 +56,11 @@ protected:
 	bool load_rle_data(std::ifstream& in);
 	bool unload_rle_data(std::ofstream& out) const;
 public:
-	enum Format { GRAYSCALE = 1, RGB = 3, RGBA = 4 };
+	enum Format { 
+		GRAYSCALE = 1, 
+		RGB = 3, 
+		RGBA = 4 
+	};
 
 	TGAImage();
 	TGAImage(const int w, const int h, const int bpp);

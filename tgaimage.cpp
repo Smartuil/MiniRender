@@ -3,8 +3,17 @@
 #include <cstring>
 #include "tgaimage.h"
 
-TGAImage::TGAImage() : data(), width(0), height(0), bytespp(0) {}
-TGAImage::TGAImage(const int w, const int h, const int bpp) : data(w* h* bpp, 0), width(w), height(h), bytespp(bpp) {}
+TGAImage::TGAImage() : 
+	data(), width(0), height(0), bytespp(0) 
+{
+
+}
+
+TGAImage::TGAImage(const int w, const int h, const int bpp) : 
+	data(w * h * bpp, 0), width(w), height(h), bytespp(bpp)
+{
+
+}
 
 bool TGAImage::read_tga_file(const std::string filename) {
 	std::ifstream in;
@@ -110,7 +119,7 @@ bool TGAImage::load_rle_data(std::ifstream& in) {
 	return true;
 }
 
-bool TGAImage::write_tga_file(const std::string filename, const bool vflip, const bool rle) const {
+bool TGAImage::write_tga_file(const std::string filename, const bool vflip /*= true*/, const bool rle /*= true*/) const {
 	std::uint8_t developer_area_ref[4] = { 0, 0, 0, 0 };
 	std::uint8_t extension_area_ref[4] = { 0, 0, 0, 0 };
 	std::uint8_t footer[18] = { 'T','R','U','E','V','I','S','I','O','N','-','X','F','I','L','E','.','\0' };
@@ -302,4 +311,3 @@ void TGAImage::scale(int w, int h) {
 	width = w;
 	height = h;
 }
-
